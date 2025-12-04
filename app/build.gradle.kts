@@ -6,9 +6,10 @@ plugins {
 
 android {
     namespace = "com.example.zenupvisualchatai"
+    compileSdk = 36
 
-    compileSdk {
-        version = release(36)
+    defaultConfig {
+        minSdk = 26
     }
 
     // Lê a API key do gradle.properties
@@ -48,7 +49,7 @@ android {
 
     buildFeatures {
         compose = true
-        buildConfig = true   // ✅ NECESSÁRIO para habilitar BuildConfig
+        buildConfig = true
     }
 }
 
