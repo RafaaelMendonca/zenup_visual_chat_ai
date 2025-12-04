@@ -1,4 +1,4 @@
-package com.example.zenup.data.repository
+package com.example.zenupvisualchatai.data.repository
 
 import com.example.zenupvisualchatai.data.network.retrofit.ApiClient
 import com.example.zenupvisualchatai.data.api.endpoints.ZenUpApi

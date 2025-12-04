@@ -1,11 +1,11 @@
 // LoginViewModel.kt
-package com.example.zenup.ui.viewmodel
+package com.example.zenupvisualchatai.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.zenup.data.repository.AuthRepository
-import com.example.zenup.data.model.LoginRequest
-import com.example.zenup.data.model.LoginResponse
+import com.example.zenupvisualchatai.data.repository.AuthRepository
+import com.example.zenupvisualchatai.data.model.requests.LoginRequest
+import com.example.zenupvisualchatai.data.model.responses.LoginResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -25,24 +25,24 @@ class LoginViewModel(
     private val _uiState = MutableStateFlow<LoginUiState>(LoginUiState.Idle)
     val uiState: StateFlow<LoginUiState> = _uiState
 
-    fun fazerLogin(email: String, senha: String) {
-
+    fun fazerLogin(chave: String) {
         // Validação local
-        if (email.isBlank() || senha.isBlank()) {
-            _uiState.value = LoginUiState.Error("Email e senha são obrigatórios.")
+        if (chave.isBlank()) {
+            _uiState.value = LoginUiState.Error("A chave é obrigatória.")
             return
         }
 
-        val request = LoginRequest(email = email, senha = senha)
+        val request = LoginRequest(chave = chave)
 
         viewModelScope.launch {
             _uiState.value = LoginUiState.Loading
             try {
                 val response = repository.login(request)
-                // O sucesso contém o token e o ID do usuário, que devem ser salvos.
                 _uiState.value = LoginUiState.Success(response)
             } catch (e: Exception) {
-                _uiState.value = LoginUiState.Error("Falha no login: ${e.message ?: "Erro desconhecido"}")
+                _uiState.value = LoginUiState.Error(
+                    e.message ?: "Erro desconhecido ao fazer login"
+                )
             }
         }
     }

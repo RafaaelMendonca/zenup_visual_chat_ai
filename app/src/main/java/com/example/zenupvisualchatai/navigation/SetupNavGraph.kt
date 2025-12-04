@@ -17,7 +17,7 @@ import com.example.zenup.ui.screen.IniciarChat
 object Route {
     const val TELA_INICIAL = "tela_inicial"
     const val LOGIN = "login"
-    const val CADASTRO = "cadastro"
+
     const val HOME = "home"
 
     const val ENERGIA = "energia"

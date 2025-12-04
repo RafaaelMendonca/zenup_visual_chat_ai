@@ -2,8 +2,8 @@ package com.example.zenup.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.zenup.data.repository.RegistroRepository
-import org.example.model.RegistroDiarioRequest
+import com.example.zenupvisualchatai.data.repository.RegistroRepository
+import com.example.zenupvisualchatai.data.model.requests.RegistroDiarioRequest
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

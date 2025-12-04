@@ -44,7 +44,7 @@ class ChatViewModel : ViewModel() {
             try {
                 Log.e(TAG, "Enviando login…")
 
-                val resp = ApiClient.api.login(LoginRequest(apiKey))
+                val resp = ApiClient.api.login(LoginRequest(chave = apiKey))
 
                 if (!resp.isSuccessful) {
                     Log.e(TAG, "LOGIN FALHOU: código=${resp.code()}")
@@ -70,7 +70,13 @@ class ChatViewModel : ViewModel() {
             try {
                 _loading.value = true
 
-                val resp = ApiClient.api.chat(ChatRequest(userId, text))
+                // ← CORRIGIDO: usar parâmetros nomeados
+                val resp = ApiClient.api.chat(
+                    ChatRequest(
+                        mensagem = text,
+                        id_usuario = userId
+                    )
+                )
 
                 if (!resp.isSuccessful) {
                     _messages.value += ChatMessage("Erro: ${resp.code()}", false)
